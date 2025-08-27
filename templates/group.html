@@ -1,1 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>{{ group.title }}</h2>
+  <p><strong>Subject:</strong> {{ group.subject }}</p>
+  <p><strong>Creator:</strong> {{ group.creator.username }}</p>
+  <p>{{ group.description }}</p>
+  <p><strong>Meeting:</strong> {% if group.meeting_at %}{{ group.meeting_at.strftime('%Y-%m-%d %H:%M') }}{% else %}Not set{% endif %}</p>
+  <p><strong>Members ({{ group.members|length }}):</strong> {{ group.members|map(attribute='username')|join(', ') }}</p>
+
+  <form method="post">
+    {% if current_user.is_authenticated %}
+      {% if current_user in group.members %}
+        <button name="action" value="leave">Leave Group</button>
+      {% else %}
+        <button name="action" value="join">Join Group</button>
+      {% endif %}
+    {% else %}
+      <p><a href="{{ url_for('login') }}">Login</a> to join this group.</p>
+    {% endif %}
+  </form>
+{% endblock %}
 
