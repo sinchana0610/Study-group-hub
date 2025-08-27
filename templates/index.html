@@ -1,1 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Study Groups</h1>
+  {% for g in groups %}
+    <div class="card">
+      <h3><a href="{{ url_for('group_detail', group_id=g.id) }}">{{ g.title }}</a></h3>
+      <p><strong>Subject:</strong> {{ g.subject }} | <strong>Creator:</strong> {{ g.creator.username }}</p>
+      <p>{{ g.description[:150] }}{% if g.description|length > 150 %}...{% endif %}</p>
+      <p><small>Members: {{ g.members|length }} {% if g.meeting_at %}| Meeting: {{ g.meeting_at.strftime('%Y-%m-%d %H:%M') }}{% endif %}</small></p>
+    </div>
+  {% else %}
+    <p>No groups yet. <a href="{{ url_for('create_group') }}">Create one</a>!</p>
+  {% endfor %}
+{% endblock %}
 
