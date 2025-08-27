@@ -76,18 +76,3 @@ Search/filter groups by subject or tags
 
 Email notifications for group invites
 
-🤝 Contributing
-
-Fork this repo
-
-Create a new branch (git checkout -b feature-name)
-
-Commit your changes (git commit -m "Added new feature")
-
-Push to branch (git push origin feature-name)
-
-Open a Pull Request
-
-📜 License
-
-This project is open-source and available under the MIT License.
